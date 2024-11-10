@@ -334,7 +334,7 @@ const NoArguments = _Type (
 
 //  functionUrl :: String -> String
 const functionUrl = name => {
-  const version = '0.22.0';  // updated programmatically
+  const version = '0.23.0';  // updated programmatically
   return (
     `https://github.com/sanctuary-js/sanctuary-def/tree/v${version}#${name}`
   );
