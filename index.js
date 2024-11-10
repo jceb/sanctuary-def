@@ -281,6 +281,7 @@ const _Type = (
           tuples
         )
       ),
+      writable: true,
     },
     test: {
       value: test,
