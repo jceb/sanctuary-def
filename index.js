@@ -174,10 +174,10 @@
 //. $.config.env.push (List ($.Unknown));
 //. ```
 
-import E from 'sanctuary-either';
+import * as E from 'sanctuary-either';
 import show from 'sanctuary-show';
-import Z from 'sanctuary-type-classes';
-import type from 'sanctuary-type-identifiers';
+import * as Z from 'sanctuary-type-classes';
+import {identifierOf} from 'sanctuary-type-identifiers';
 
 const {hasOwnProperty, toString} = globalThis.Object.prototype;
 
@@ -407,7 +407,7 @@ export const config = ((
 export const Type = NullaryTypeWithUrl
   ('Type')
   ([])
-  (x => type (x) === 'sanctuary-def/Type@1');
+  (x => identifierOf (x) === 'sanctuary-def/Type@1');
 
 //# NonEmpty :: Type -> Type
 //.
@@ -484,7 +484,7 @@ export const AnyFunction = NullaryTypeWithUrl
 export const Arguments = NullaryTypeWithUrl
   ('Arguments')
   ([])
-  (x => type (x) === 'Arguments');
+  (x => identifierOf (x) === 'Arguments');
 
 //# Array :: Type -> Type
 //.
@@ -492,7 +492,7 @@ export const Arguments = NullaryTypeWithUrl
 export const Array = UnaryTypeWithUrl
   ('Array')
   ([])
-  (x => type (x) === 'Array')
+  (x => identifierOf (x) === 'Array')
   (array => array);
 
 //# Array0 :: Type
@@ -545,7 +545,7 @@ export const Buffer = NullaryTypeWithUrl
 export const Date = NullaryTypeWithUrl
   ('Date')
   ([])
-  (x => type (x) === 'Date');
+  (x => identifierOf (x) === 'Date');
 
 //# ValidDate :: Type
 //.
@@ -561,7 +561,7 @@ export const ValidDate = NullaryTypeWithUrl
 export const Descending = UnaryTypeWithUrl
   ('Descending')
   ([])
-  (x => type (x) === 'sanctuary-descending/Descending@1')
+  (x => identifierOf (x) === 'sanctuary-descending/Descending@1')
   (descending => descending);
 
 //# Either :: Type -> Type -> Type
@@ -570,7 +570,7 @@ export const Descending = UnaryTypeWithUrl
 export const Either = BinaryTypeWithUrl
   ('Either')
   ([])
-  (x => type (x) === 'sanctuary-either/Either@1')
+  (x => identifierOf (x) === 'sanctuary-either/Either@1')
   (either => either.isLeft ? [either.value] : [])
   (either => either.isLeft ? [] : [either.value]);
 
@@ -581,7 +581,7 @@ export const Either = BinaryTypeWithUrl
 export const Error = NullaryTypeWithUrl
   ('Error')
   ([])
-  (x => type (x) === 'Error');
+  (x => identifierOf (x) === 'Error');
 
 //# Fn :: Type -> Type -> Type
 //.
@@ -650,7 +650,7 @@ export const HtmlElement = NullaryTypeWithUrl
 export const Identity = UnaryTypeWithUrl
   ('Identity')
   ([])
-  (x => type (x) === 'sanctuary-identity/Identity@1')
+  (x => identifierOf (x) === 'sanctuary-identity/Identity@1')
   (identity => identity);
 
 //# JsMap :: Type -> Type -> Type
@@ -681,7 +681,7 @@ export const JsSet = UnaryTypeWithUrl
 export const Maybe = UnaryTypeWithUrl
   ('Maybe')
   ([])
-  (x => type (x) === 'sanctuary-maybe/Maybe@1')
+  (x => identifierOf (x) === 'sanctuary-maybe/Maybe@1')
   (maybe => maybe);
 
 //# Module :: Type
@@ -698,7 +698,7 @@ export const Module = NullaryTypeWithUrl
 export const Null = NullaryTypeWithUrl
   ('Null')
   ([])
-  (x => type (x) === 'Null');
+  (x => identifierOf (x) === 'Null');
 
 //# Nullable :: Type -> Type
 //.
@@ -844,7 +844,7 @@ export const NegativeInteger = NullaryTypeWithUrl
 export const Object = NullaryTypeWithUrl
   ('Object')
   ([])
-  (x => type (x) === 'Object');
+  (x => identifierOf (x) === 'Object');
 
 //# Pair :: Type -> Type -> Type
 //.
@@ -852,7 +852,7 @@ export const Object = NullaryTypeWithUrl
 export const Pair = BinaryTypeWithUrl
   ('Pair')
   ([])
-  (x => type (x) === 'sanctuary-pair/Pair@1')
+  (x => identifierOf (x) === 'sanctuary-pair/Pair@1')
   (pair => [pair.fst])
   (pair => [pair.snd]);
 
@@ -862,7 +862,7 @@ export const Pair = BinaryTypeWithUrl
 export const RegExp = NullaryTypeWithUrl
   ('RegExp')
   ([])
-  (x => type (x) === 'RegExp');
+  (x => identifierOf (x) === 'RegExp');
 
 //# GlobalRegExp :: Type
 //.
@@ -931,7 +931,7 @@ export const Symbol = NullaryTypeWithUrl
 export const TypeClass = NullaryTypeWithUrl
   ('TypeClass')
   ([])
-  (x => type (x) === 'sanctuary-type-classes/TypeClass@1');
+  (x => identifierOf (x) === 'sanctuary-type-classes/TypeClass@1');
 
 //# Undefined :: Type
 //.
@@ -939,7 +939,7 @@ export const TypeClass = NullaryTypeWithUrl
 export const Undefined = NullaryTypeWithUrl
   ('Undefined')
   ([])
-  (x => type (x) === 'Undefined');
+  (x => identifierOf (x) === 'Undefined');
 
 //# config.checkTypes :: Boolean
 //.
@@ -1539,7 +1539,7 @@ export const NullaryType = _def
 //.   ('Maybe')
 //.   ('http://example.com/my-package#Maybe')
 //.   ([])
-//.   (x => type (x) === maybeTypeIdent)
+//.   (x => identifierOf (x) === maybeTypeIdent)
 //.   (maybe => maybe.isJust ? [maybe.value] : []);
 //.
 //. //    Nothing :: Maybe a
@@ -1652,7 +1652,7 @@ export const UnaryType = _def
 //.   ('Pair')
 //.   ('http://example.com/my-package#Pair')
 //.   ([])
-//.   (x => type (x) === pairTypeIdent)
+//.   (x => identifierOf (x) === pairTypeIdent)
 //.   (({fst}) => [fst])
 //.   (({snd}) => [snd]);
 //.
